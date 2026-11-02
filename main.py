@@ -2,8 +2,7 @@ import requests
 import pandas as pd
 
 # 1. Connect to the World Bank API
-url = "https://api.worldbank.org/v2/country/IDN/indicator/NY.GDP.MKTP.KD.ZG?date=1996:2024&format=json"
-
+url = "https://api.worldbank.org/v2/country/BRN;KHM;IDN;LAO;MYS;MMR;PHL;SGP;THA;TLS;VNM/indicator/NY.GDP.MKTP.KD.ZG?date=1996:2024&format=json&per_page=1000"
 response = requests.get(url)
 
 if response.status_code == 200:
@@ -23,45 +22,49 @@ if response.status_code == 200:
     for observation in data[1]:
 
         record = {
-            "Country": "Indonesia",
-            "Year": int(observation["date"]),
-            "GDP Growth": observation["value"]
-        }
-
+    "Country": observation["country"]["value"],
+    "Country Code": observation["countryiso3code"],
+    "Year": int(observation["date"]),
+    "GDP Growth": observation["value"]
+}
         records.append(record)
 
     # 6. Convert records into a DataFrame
     df = pd.DataFrame(records)
 
-    # 7. Sort the DataFrame by Year
-    df = df.sort_values(by="Year")
+    # 7. Country Coverage
+    print("\n--- COUNTRY COVERAGE ---")
+    print(df["Country"].nunique(), "countries found")
 
-    # 8. Display the dataset
-    print("\n--- INDONESIA GDP GROWTH DATASET ---")
-    print(df)
+    # 8. Observations per country
+    print("\n--- OBSERVATIONS PER COUNTRY ---")
+    print(df["Country"].value_counts())
 
-    # 9. Inspect missing values
+    # 7. Sort the DataFrame by Country and Year
+    df = df.sort_values(by=["Country", "Year"])
+
+    # 8. Inspect missing values
     print("\n--- MISSING VALUES ---")
     print(df.isnull().sum())
 
-    # 10. Check for duplicates
+    # 9. Check for duplicates
     print("\n--- CHECK FOR DUPLICATE RECORDS ---")
     print(df.duplicated().sum())
 
-    # 11. Check for duplicate country-year pairs
+    # 10. Check for duplicate country-year pairs
     print("\n--- DUPLICATE COUNTRY-YEAR PAIRS ---")
     print(df.duplicated(subset=["Country", "Year"]).sum())
     
-    # 12. Display descriptive statistics
+    # 11. Display descriptive statistics
     print("\n--- GDP GROWTH STATISTICS ---")
     print(df["GDP Growth"].describe())
 
-    # 13. Display the cleaned dataset
+    # 12. Display the cleaned dataset
     print("\n--- DATASET INFORMATION ---")
     df.info()
 
-    # 14. Export the dataset to CSV
-    df.to_csv("data/processed/indonesia_gdp_growth.csv", index=False)
+    # 13. Export the dataset to CSV
+    df.to_csv("data/processed/asean_gdp_growth.csv", index=False)
 
     print("\nDataset successfully saved!")
 
