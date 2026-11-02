@@ -22,10 +22,10 @@ if response.status_code == 200:
     for observation in data[1]:
 
         record = {
-    "Country": observation["country"]["value"],
-    "Country Code": observation["countryiso3code"],
-    "Year": int(observation["date"]),
-    "GDP Growth": observation["value"]
+            "Country": observation["country"]["value"],
+            "Country Code": observation["countryiso3code"],
+            "Year": int(observation["date"]),
+            "GDP Growth": observation["value"]
 }
         records.append(record)
 
