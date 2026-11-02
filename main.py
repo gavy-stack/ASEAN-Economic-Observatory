@@ -42,6 +42,14 @@ if response.status_code == 200:
     print("\n--- DATASET INFORMATION ---")
     df.info()
 
+    # 9. Inspect missing values
+    print("\n--- MISSING VALUES ---")
+    print(df.isnull().sum())
+
+    # 10. Check for duplicates
+    print("\n--- CHECK FOR DUPLICATE RECORDS ---")
+    print(df.duplicated().sum())
+
 else:
     print("Something went wrong!")
     print("Status code:", response.status_code)
