@@ -32,6 +32,7 @@ if response.status_code == 200:
 
     # 6. Convert records into a DataFrame
     df = pd.DataFrame(records)
+    df = df.sort_values(by="Year")
 
     # 7. Display the dataset
     print("\n--- INDONESIA GDP GROWTH DATASET ---")
