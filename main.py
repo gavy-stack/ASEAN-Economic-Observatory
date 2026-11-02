@@ -32,6 +32,16 @@ if response.status_code == 200:
     # 6. Convert records into a DataFrame
     df = pd.DataFrame(records)
 
+    # 7. Calculate average GDP growth for each country
+    growth_ranking = df.groupby("Country")["GDP Growth"].mean()
+
+    # 8. Sort the countries from highest to lowest average growth
+    growth_ranking = growth_ranking.sort_values(ascending=False)
+
+    # 9. Display the ranking
+    print("\n--- AVERAGE GDP GROWTH RANKING ---")
+    print(growth_ranking.round(2))
+
     # 7. Country Coverage
     print("\n--- COUNTRY COVERAGE ---")
     print(df["Country"].nunique(), "countries found")
