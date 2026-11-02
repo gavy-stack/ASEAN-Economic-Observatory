@@ -60,6 +60,11 @@ if response.status_code == 200:
     print("\n--- DATASET INFORMATION ---")
     df.info()
 
+    # 14. Export the dataset to CSV
+    df.to_csv("data/processed/indonesia_gdp_growth.csv", index=False)
+
+    print("\nDataset successfully saved!")
+
 else:
     print("Something went wrong!")
     print("Status code:", response.status_code)
