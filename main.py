@@ -26,11 +26,11 @@ if response.status_code == 200:
     print("\n--- FIRST OBSERVATION ---")
 
     for observation in data[1]:
-        for observation in data[1]:
-            year = observation["date"]
-            growth = observation["value"]
+        year = observation["date"]
+        growth = observation["value"]
 
-            print(f"{year}: {growth:.2f}%")
+        if growth is not None:
+            print(year, ":", round(growth, 2))
 
 else:
     print("Something went wrong!")
