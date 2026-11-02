@@ -65,6 +65,27 @@ if response.status_code == 200:
 
     print("\nFinancial dataset successfully saved!")
 
+    # 14. Investigate missing values by country
+
+    missing_by_country = (
+        df["Domestic Credit (% of GDP)"]
+        .isna()
+        .groupby(df["Country"])
+        .sum()
+        )
+
+    print("\n--- MISSING VALUES BY COUNTRY ---")
+    print(missing_by_country)
+
+    # 15. Display country-years with missing credit data
+
+    missing_rows = df[
+        df["Domestic Credit (% of GDP)"].isna()
+]
+
+    print("\n--- MISSING COUNTRY-YEAR OBSERVATIONS ---")
+    print(missing_rows[["Country", "Year"]].to_string(index=False))
+
 else:
     print("Something went wrong!")
     print("Status code:", response.status_code)
