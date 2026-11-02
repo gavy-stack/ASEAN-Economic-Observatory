@@ -86,6 +86,18 @@ if response.status_code == 200:
     print("\n--- MISSING COUNTRY-YEAR OBSERVATIONS ---")
     print(missing_rows[["Country", "Year"]].to_string(index=False))
 
+    # 16. Count missing observations by year
+
+    missing_by_year = (
+        df["Domestic Credit (% of GDP)"]
+        .isna()
+        .groupby(df["Year"])
+        .sum()
+)
+
+    print("\n--- MISSING VALUES BY YEAR ---")
+    print(missing_by_year[missing_by_year > 0])
+
 else:
     print("Something went wrong!")
     print("Status code:", response.status_code)
