@@ -1,0 +1,11 @@
+1. Layer 1 (Raw Data)
+2. Layer 2 (Processed Data)
+3. Layer 3 (Analysis and Visualization)
+
+First research theme:
+- Government effectiveness and public expenditure.
+- Banking and financial systems as drivers of economic development
+
+Conceptual Framework:Government and Instituions spending --> (Public Investment) and (Financial Development) --> Economic and Social Outcomes
+
+
