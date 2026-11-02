@@ -29,7 +29,7 @@ if response.status_code == 200:
         year = observation["date"]
         growth = observation["value"]
 
-        print(f"{year}: {growth:.2f}%")
+        print(f"Year: {year} | Indonesia GDP Growth: {growth:.2f}%")
 
 else:
     print("Something went wrong!")
