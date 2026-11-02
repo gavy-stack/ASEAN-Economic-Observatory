@@ -68,27 +68,33 @@ if response.status_code == 200:
     # 15. Sort the DataFrame by Country and Year
     df = df.sort_values(by=["Country", "Year"])
 
-    # 16. Inspect missing values
+    # 16. calculate overall average GDP growth
+    asean_average = df["GDP Growth"].mean()
+    
+    print("\n--- OVERALL ASEAN GDP GROWTH ---")
+    print("Average GDP Growth:", round(asean_average, 2), "%")
+
+    # 17. Inspect missing values
     print("\n--- MISSING VALUES ---")
     print(df.isnull().sum())
 
-    # 17. Check for duplicates
+    # 18. Check for duplicates
     print("\n--- CHECK FOR DUPLICATE RECORDS ---")
     print(df.duplicated().sum())
 
-    # 18. Check for duplicate country-year pairs
+    # 19. Check for duplicate country-year pairs
     print("\n--- DUPLICATE COUNTRY-YEAR PAIRS ---")
     print(df.duplicated(subset=["Country", "Year"]).sum())
     
-    # 19. Display descriptive statistics
+    # 20. Display descriptive statistics
     print("\n--- GDP GROWTH STATISTICS ---")
     print(df["GDP Growth"].describe())
 
-    # 20. Display the cleaned dataset
+    # 21. Display the cleaned dataset
     print("\n--- DATASET INFORMATION ---")
     df.info()
 
-    # 21. Export the dataset to CSV
+    # 22. Export the dataset to CSV
     df.to_csv("data/processed/asean_gdp_growth.csv", index=False)
 
     print("\nDataset successfully saved!")
