@@ -26,7 +26,11 @@ if response.status_code == 200:
     print("\n--- FIRST OBSERVATION ---")
 
     for observation in data[1]:
-        print(observation["date"], observation["value"])
+        for observation in data[1]:
+            year = observation["date"]
+            growth = observation["value"]
+
+            print(f"{year}: {growth:.2f}%")
 
 else:
     print("Something went wrong!")
