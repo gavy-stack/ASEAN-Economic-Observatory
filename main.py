@@ -50,6 +50,10 @@ if response.status_code == 200:
     print("\n--- CHECK FOR DUPLICATE RECORDS ---")
     print(df.duplicated().sum())
 
+    # 11. Check for duplicate country-year pairs
+    print("\n--- DUPLICATE COUNTRY-YEAR PAIRS ---")
+    print(df.duplicated(subset=["Country", "Year"]).sum())
+
 else:
     print("Something went wrong!")
     print("Status code:", response.status_code)
