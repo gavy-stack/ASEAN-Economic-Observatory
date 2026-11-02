@@ -29,8 +29,7 @@ if response.status_code == 200:
         year = observation["date"]
         growth = observation["value"]
 
-        if growth is not None:
-            print(year, ":", round(growth, 2))
+        print(f"{year}: {growth:.2f}%")
 
 else:
     print("Something went wrong!")
