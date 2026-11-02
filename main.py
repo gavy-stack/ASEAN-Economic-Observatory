@@ -32,27 +32,33 @@ if response.status_code == 200:
 
     # 6. Convert records into a DataFrame
     df = pd.DataFrame(records)
+
+    # 7. Sort the DataFrame by Year
     df = df.sort_values(by="Year")
 
-    # 7. Display the dataset
+    # 8. Display the dataset
     print("\n--- INDONESIA GDP GROWTH DATASET ---")
     print(df)
 
-    # 8. Inspect the dataset
+    # 9. Inspect the dataset
     print("\n--- DATASET INFORMATION ---")
     df.info()
 
-    # 9. Inspect missing values
+    # 10. Inspect missing values
     print("\n--- MISSING VALUES ---")
     print(df.isnull().sum())
 
-    # 10. Check for duplicates
+    # 11. Check for duplicates
     print("\n--- CHECK FOR DUPLICATE RECORDS ---")
     print(df.duplicated().sum())
 
-    # 11. Check for duplicate country-year pairs
+    # 12. Check for duplicate country-year pairs
     print("\n--- DUPLICATE COUNTRY-YEAR PAIRS ---")
     print(df.duplicated(subset=["Country", "Year"]).sum())
+
+    # 13. Display descriptive statistics
+    print("\n--- GDP GROWTH STATISTICS ---")
+    print(df["GDP Growth"].describe())
 
 else:
     print("Something went wrong!")
