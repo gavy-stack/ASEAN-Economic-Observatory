@@ -2,6 +2,7 @@
 from numpy import rint
 import requests
 
+# WGI dictionaries for country codes
 countries = {
     "BRN": "Brunei Darussalam",
     "KHM": "Cambodia",
