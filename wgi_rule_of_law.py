@@ -147,3 +147,12 @@ invalid_intervals = valid_intervals[
 ]
 
 print("\nInvalid confidence intervals:", len(invalid_intervals))
+
+# Export final dataset
+
+output_path = "data/processed/asean_wgi_rule_of_law_1996_2024.csv"
+
+df_final.to_csv(output_path, index=False)
+
+print("\nDataset exported successfully!")
+print("File:", output_path)
