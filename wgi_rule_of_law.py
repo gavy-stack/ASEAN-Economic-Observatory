@@ -30,38 +30,50 @@ indicators = {
 country_code = "IDN"
 
 year_sets = {}
+all_data = []   
 
-for name, indicator_code in indicators.items():
+all_data = []
 
-    url = (
-        f"https://api.worldbank.org/v2/country/{country_code}/"
-        f"indicator/{indicator_code}"
-    )
+for country_code, country_name in countries.items():
 
-    params = {
-        "date": "1996:2024",
-        "format": "json",
-        "per_page": 100,
-        "source": 3
-    }
+    print(f"\nCollecting data for {country_name}...")
 
-    response = requests.get(url, params=params, timeout=30)
-    response.raise_for_status()
+    for name, indicator_code in indicators.items():
 
-    data = response.json()
+        url = (
+            f"https://api.worldbank.org/v2/country/{country_code}/"
+            f"indicator/{indicator_code}"
+        )
 
-    print(f"\n--- {name} ---")
-
-    if len(data) < 2 or not isinstance(data[1], list):
-        print("API ERROR:", data[0])
-    else:
-        print("Observations:", data[0]["total"])
-        print("Latest observation:", data[1][0])
-        year_sets[name] = {
-            item["date"] for item in data[1]
+        params = {
+            "date": "1996:2024",
+            "format": "json",
+            "per_page": 100,
+            "source": 3
         }
 
-        print("Available years:", sorted(year_sets[name]))
+        response = requests.get(url, params=params, timeout=30)
+        response.raise_for_status()
+
+        data = response.json()
+
+        if len(data) < 2 or not isinstance(data[1], list):
+            print(f"API ERROR: {country_name} - {name}")
+            continue
+
+        for item in data[1]:
+
+            observation = {
+                "Country": country_name,
+                "Country Code": country_code,
+                "Year": int(item["date"]),
+                name: item["value"]
+            }
+
+            all_data.append(observation)
+
+print("\nData collection completed!")
+print("Total observations collected:", len(all_data))
 
 print("\n--- YEAR COVERAGE VALIDATION ---")
 
