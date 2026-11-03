@@ -67,12 +67,37 @@ print(asean_df["Country"].value_counts())
 
 print("\n--- ASEAN HISTORICAL COVERAGE ---")
 
+# Preserve the original Year column and create a text version
+asean_df = asean_df.copy()
+asean_df["Year_label"] = asean_df["Year"].astype(str)
+
+# Extract the starting year from each observation period
+asean_df["Year_start"] = pd.to_numeric(
+    asean_df["Year_label"].str[:4]
+)
+
+# Summarise coverage for each country
 coverage = (
-    asean_df.groupby("Country")["Year"]
-    .agg(["min", "max", "count"])
+    asean_df.groupby("Country")
+    .agg(
+        first_period=("Year_start", "min"),
+        last_period=("Year_start", "max"),
+        periods_available=("Year_label", "nunique")
+    )
 )
 
 print(coverage)
+
+# Show the actual observation periods for each country
+print("\n--- AVAILABLE PERIODS BY COUNTRY ---")
+
+periods_by_country = (
+    asean_df.sort_values("Year_start")
+    .groupby("Country")["Year_label"]
+    .agg(lambda periods: ", ".join(periods))
+)
+
+print(periods_by_country)
 
 # 8. Check duplicate country-year observations
 
