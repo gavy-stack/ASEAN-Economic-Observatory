@@ -109,6 +109,21 @@ if response.status_code == 200:
     print("\n--- MISSING DATA MAP ---")
     print(missing_pivot.isna().astype(int).to_string())
 
+    # 18. Display exact missing years for each country
+
+    print("\n--- EXACT MISSING YEARS BY COUNTRY ---")
+
+    for country in df["Country"].unique():
+
+        missing_years = df.loc[
+        (df["Country"] == country) &
+        (df["Domestic Credit (% of GDP)"].isna()),
+        "Year"
+        ].tolist()
+
+        if missing_years:
+            print(f"{country}: {missing_years}")
+
 else:
     print("Something went wrong!")
     print("Status code:", response.status_code)
