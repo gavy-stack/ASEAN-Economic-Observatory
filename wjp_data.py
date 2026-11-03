@@ -236,3 +236,43 @@ for column in df.columns:
         score = indonesia_historical.iloc[0][column]
 
         print(f"{column}: {score:.6f}")
+
+# 13. Check coverage of selected Rule of Law indicators
+
+rule_of_law_columns = [
+    "Factor 7: Civil Justice",
+    "7.1 People can access and afford civil justice",
+    "7.3 Civil justice is free of corruption",
+    "7.4 Civil justice is free of improper government influence",
+    "7.5 Civil justice is not subject to unreasonable delay",
+    "7.6. Civil justice is effectively enforced",
+    "Factor 8: Criminal Justice",
+    "8.1 Criminal investigation system is effective",
+    "8.2 Criminal adjudication system is timely and effective",
+    "8.3 Correctional system is effective in reducing criminal behavior",
+    "8.4 Criminal system is impartial",
+    "8.6 Criminal system is free of improper government influence",
+    "8.7. Due process of the law and rights of the accused"
+]
+
+# Limit the observations to our research period
+wjp_research = asean_df[
+    asean_df["Year_start"].between(2012, 2024)
+].copy()
+
+print("\n--- RULE OF LAW INDICATOR COVERAGE ---")
+
+print(
+    wjp_research[rule_of_law_columns]
+    .isna()
+    .sum()
+    .to_string()
+)
+
+print("\n--- NON-MISSING OBSERVATIONS ---")
+
+print(
+    wjp_research[rule_of_law_columns]
+    .count()
+    .to_string()
+)
