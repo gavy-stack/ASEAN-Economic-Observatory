@@ -155,6 +155,14 @@ if response.status_code == 200:
     print("\n--- ASEAN FINANCIAL DATA COVERAGE ---")
     print(coverage.to_string())
 
+    # 20. Export the coverage report
+
+    coverage.to_csv(
+        "data/processed/asean_private_credit_coverage.csv"
+    )
+
+    print("\nCoverage report successfully saved!")
+
 else:
     print("Something went wrong!")
     print("Status code:", response.status_code)
