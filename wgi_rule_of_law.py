@@ -75,14 +75,12 @@ for country_code, country_name in countries.items():
 print("\nData collection completed!")
 print("Total observations collected:", len(all_data))
 
-print("\n--- YEAR COVERAGE VALIDATION ---")
+print("\n--- FIRST 5 OBSERVATIONS ---")
 
-reference_years = year_sets["RL Estimate"]
+for observation in all_data[:5]:
+    print(observation)
 
-for name, years in year_sets.items():
-    if years == reference_years:
-        print(f"{name}: MATCH")
-    else:
-        print(f"{name}: MISMATCH")
-        print("Missing years:", sorted(reference_years - years))
-        print("Additional years:", sorted(years - reference_years))
+print("\n--- LAST 5 OBSERVATIONS ---")
+
+for observation in all_data[-5:]:
+    print(observation)
