@@ -142,3 +142,26 @@ for country in asean_countries:
     ]
 
     print(country, ":", missing if missing else "No missing periods")
+
+    # 10. Inspect historical worksheet structures
+
+historical_sheets = [
+    "WJP ROL Index 2012-2013 Scores",
+    "WJP ROL Index 2014 Scores",
+    "WJP ROL Index 2015 Scores"
+]
+
+for sheet in historical_sheets:
+
+    print(f"\n--- {sheet} ---")
+
+    historical_df = pd.read_excel(
+        file_path,
+        sheet_name=sheet,
+        header=None
+    )
+
+    print("Dimensions:", historical_df.shape)
+
+    print("\nFirst 8 rows:")
+    print(historical_df.head(8).to_string(index=False))
