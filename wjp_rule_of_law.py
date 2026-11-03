@@ -102,3 +102,52 @@ print("\nNumber of countries:",
 
 print("Number of observations:", 
       len(asean_rule_of_law_df))
+
+# 9. Define the observation periods for our research
+
+selected_periods = [
+    "2012-2013",
+    "2014",
+    "2015",
+    "2016",
+    "2017-2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024"
+]
+
+# 10. Convert Year values to strings
+asean_rule_of_law_df["Year"] = (
+    asean_rule_of_law_df["Year"].astype(str)
+)
+
+# 11. Filter the selected periods
+asean_rule_of_law_df = asean_rule_of_law_df[
+    asean_rule_of_law_df["Year"].isin(selected_periods)
+].copy()
+
+# 12. Inspect the filtered dataset
+print("\n--- WJP RULE OF LAW: 2012–2024 ---")
+
+print("Countries:",
+      asean_rule_of_law_df["Country Code"].nunique())
+
+print("Observations:",
+      len(asean_rule_of_law_df))
+
+print("\n--- PERIOD DISTRIBUTION ---")
+print(
+    asean_rule_of_law_df["Year"]
+    .value_counts()
+    .reindex(selected_periods)
+)
+
+print("\n--- COUNTRY DISTRIBUTION ---")
+print(
+    asean_rule_of_law_df.groupby("Country")["Year"]
+    .count()
+    .sort_index()
+)
