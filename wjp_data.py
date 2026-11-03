@@ -224,3 +224,15 @@ for index, label in original_df.iloc[:, 0].items():
         score = original_df.iloc[index, indonesia_column]
 
         print(label, ":", score)
+
+# 12. Inspect consolidated subfactor scores for Indonesia, 2012-2013
+
+print("\n--- CONSOLIDATED SUBFACTOR SCORES ---")
+
+for column in df.columns:
+
+    if column.startswith(("1.", "3.", "5.", "7.", "8.")):
+
+        score = indonesia_historical.iloc[0][column]
+
+        print(f"{column}: {score:.6f}")
