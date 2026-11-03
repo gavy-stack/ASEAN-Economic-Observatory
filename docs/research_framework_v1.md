@@ -1,29 +1,124 @@
+ASEAN ECONOMIC Observatory
+    Governance-centered comparative research on national development across ASEAN.
 
-import requests
+Central research objective
+    To examine how government and institutional capacity, public investment, and financial development relate to economic and social development across ASEAN countries, with particular attention to how government capacity influences the management and effectiveness of public investment and financial systems.
 
-url = (
-    "https://api.worldbank.org/v2/country/IDN/"
-    "indicator/GOV_WGI_RL.SE"
-)
 
-params = {
-    "date": "1996:2024",
-    "format": "json",
-    "per_page": 100,
-    "source": 3
-}
 
-response = requests.get(url, params=params, timeout=30)
-response.raise_for_status()
+Primary Research Question
+    How do government and institutional capacity, public investment, and financial development relate to economic and social development across ASEAN countries, with particular attention to how government capacity shapes the effectiveness of public investment and financial systems?
 
-data = response.json()
+Geographical scope
+    All 11 current ASEAN member states, with Indonesia as the primary focus and the other countries serving as comparative references.
 
-if len(data) < 2 or not isinstance(data[1], list):
-    print("--- API ERROR ---")
-    print(data[0])
-else:
-    print("--- API METADATA ---")
-    print(data[0])
+Research Data Process
+    Layer 1 (Raw Data)
+        ^
+        |
+        |
+    Layer 2 (Processed Data)
+        ^
+        |
+        |
+    Layer 3 (Analysis and Visualization)
 
-    print("\n--- FIRST OBSERVATION ---")
-    print(data[1][0])
+First research theme:
+    - Government effectiveness and public expenditure.
+    - Banking and financial systems as drivers of economic development
+
+Historical scope
+    1996–2024 initially, using annual observations, subject to indicator-specific data availability.
+
+Long-term Ambition
+    Develop an integrated understanding of how governments, institutions, and financial systems contribute to national development.
+
+The reason for the choosing of 1996-2024 is due to several reasons:
+    1. Consistency with future governance analysis
+        - We're planning to expand the Observatory beyond banking and financial development to investigate how government effectiveness and institutional quality relate to economic development.
+    2. To capture important historical events
+        - 1997–1998: Asian Financial Crisis
+        - 1998 onwards: Indonesian Reformasi
+        - 2008–2009: Global Financial Crisis
+        - 2015: ASEAN Economic Community
+        - 2020–2022: COVID-19 pandemic
+    3. Its manageable historical dataset with 29 observations for each country
+
+Level 1, Government and institutional environment
+
+    - Institutional quality
+        - Rule of law
+            - WGI Rule of Law
+                - Contract enforcement
+                - Property rights
+                - Police performance
+                - Courts and the judicial system
+                - Crime and violence
+            - WJP Rule of Law   
+                - Constraints on Government Powers
+                - Absence of Corruption
+                - Open Government
+                - Fundamental Rights
+                - Order and Security
+                - Regulatory Enforcement
+                - Civil Justice
+                - Criminal Justice
+        - Regulatory quality
+            - WGI: Regulatory Quality
+        - Control of corruption
+            - WGI: Control of Corruption
+        - Accountability
+            - WGI: Voice and Accountability
+        - Institutional stability
+            - WGI: Political Stability
+    - Fiscal capacity and public financial management
+        - Revenue mobilisation
+        - Budget planning
+        - Expenditure management
+        - Debt management
+        - Fiscal sustainability
+    - Administrative and bureaucratic capacity
+        - Bureaucratic quality
+        - Government human resources
+        - Administrative coordination
+        - Implementation capacity
+        - Public service delivery
+    - Policy capacity and effectiveness
+        - Policy formulation
+        - Evidence-based decision-making
+        - Policy coordination
+        - Policy implementation
+        - Monitoring and evaluation
+
+Level 2A, Public Investment
+
+    - Infrastructure
+    - Education
+    - Public capital formation
+    
+Level 2B, Financial development
+    - Banking
+    - Private credit (✅)
+    - Financial access
+
+Level 3, Economic and social outcomes
+    - Economic growth (✅)
+    - Income
+    - Employment
+    - Poverty reduction
+    - Human development
+
+
+Hypothesis
+    Governance and outcomes
+    - The Question: Does institutional quality relate to development outcomes?
+        - H1, Better institutional quality is associated with stronger economic and social outcomes.
+    Development mechanisms
+    - Do public investment and financial development relate to development outcomes?
+        - H2, More effective public investment is associated with better economic and social outcomes.
+        - H3, Greater financial development is associated with stronger economic performance and social outcomes.
+    Governance and mechanisms
+    - How do institutions relate to investment and financial development, and do the latter complement each other?
+        - H4, Stronger government and institutional capacity is associated with greater financial development.
+        - H5, Stronger government and institutional capacity is associated with more effective public investment.
+        - H6, Public investment and financial development may complement one another in supporting economic and social development.
