@@ -1,5 +1,20 @@
 
+from numpy import rint
 import requests
+
+countries = {
+    "BRN": "Brunei Darussalam",
+    "KHM": "Cambodia",
+    "IDN": "Indonesia",
+    "LAO": "Lao PDR",
+    "MYS": "Malaysia",
+    "MMR": "Myanmar",
+    "PHL": "Philippines",
+    "SGP": "Singapore",
+    "THA": "Thailand",
+    "TLS": "Timor-Leste",
+    "VNM": "Vietnam"
+}
 
 # WGI Rule of Law indicators
 indicators = {
@@ -12,6 +27,8 @@ indicators = {
 }
 
 country_code = "IDN"
+
+year_sets = {}
 
 for name, indicator_code in indicators.items():
 
@@ -39,3 +56,20 @@ for name, indicator_code in indicators.items():
     else:
         print("Observations:", data[0]["total"])
         print("Latest observation:", data[1][0])
+        year_sets[name] = {
+            item["date"] for item in data[1]
+        }
+
+        print("Available years:", sorted(year_sets[name]))
+
+print("\n--- YEAR COVERAGE VALIDATION ---")
+
+reference_years = year_sets["RL Estimate"]
+
+for name, years in year_sets.items():
+    if years == reference_years:
+        print(f"{name}: MATCH")
+    else:
+        print(f"{name}: MISMATCH")
+        print("Missing years:", sorted(reference_years - years))
+        print("Additional years:", sorted(years - reference_years))
