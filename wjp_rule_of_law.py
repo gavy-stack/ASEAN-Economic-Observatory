@@ -66,3 +66,39 @@ print("Columns:", rule_of_law_df.shape[1])
 
 print("\n--- SELECTED COLUMN NAMES ---")
 print(rule_of_law_df.columns.tolist())
+
+# 6. Define ASEAN countries available in WJP
+
+asean_wjp_codes = [
+    "BRN",  # Brunei Darussalam
+    "KHM",  # Cambodia
+    "IDN",  # Indonesia
+    "LAO",  # Lao PDR
+    "MYS",  # Malaysia
+    "MMR",  # Myanmar
+    "PHL",  # Philippines
+    "SGP",  # Singapore
+    "THA",  # Thailand
+    "TLS",  # Timor-Leste
+    "VNM"   # Vietnam
+]
+
+# 7. Filter the dataset
+asean_rule_of_law_df = rule_of_law_df[
+    rule_of_law_df["Country Code"].isin(asean_wjp_codes)
+].copy()
+
+# 8. Inspect country coverage
+print("\n--- ASEAN COUNTRIES IN WJP DATASET ---")
+
+print(
+    asean_rule_of_law_df[
+        ["Country", "Country Code"]
+    ].drop_duplicates().sort_values("Country")
+)
+
+print("\nNumber of countries:", 
+      asean_rule_of_law_df["Country Code"].nunique())
+
+print("Number of observations:", 
+      len(asean_rule_of_law_df))
