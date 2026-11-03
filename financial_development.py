@@ -72,7 +72,7 @@ if response.status_code == 200:
         .isna()
         .groupby(df["Country"])
         .sum()
-        )
+    )
 
     print("\n--- MISSING VALUES BY COUNTRY ---")
     print(missing_by_country)
@@ -81,7 +81,7 @@ if response.status_code == 200:
 
     missing_rows = df[
         df["Domestic Credit (% of GDP)"].isna()
-]
+    ]
 
     print("\n--- MISSING COUNTRY-YEAR OBSERVATIONS ---")
     print(missing_rows[["Country", "Year"]].to_string(index=False))
@@ -93,10 +93,21 @@ if response.status_code == 200:
         .isna()
         .groupby(df["Year"])
         .sum()
-)
+    )
 
     print("\n--- MISSING VALUES BY YEAR ---")
     print(missing_by_year[missing_by_year > 0])
+
+    # 17. Create a table showing missing observations by country and year
+
+    missing_pivot = df.pivot(
+        index="Country",
+        columns="Year",
+        values="Domestic Credit (% of GDP)"
+    )
+
+    print("\n--- MISSING DATA MAP ---")
+    print(missing_pivot.isna().astype(int).to_string())
 
 else:
     print("Something went wrong!")
