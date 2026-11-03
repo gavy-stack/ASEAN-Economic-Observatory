@@ -1,37 +1,41 @@
 
 import requests
 
-# 1. Define the API address
-url = (
-    "https://api.worldbank.org/v2/country/IDN/"
-    "indicator/RL.STD.ERR"
-)
-
-# 2. Define the request parameters
-params = {
-    "date": "1996:2024",
-    "format": "json",
-    "per_page": 100
+# WGI Rule of Law indicators
+indicators = {
+    "RL Estimate": "GOV_WGI_RL.EST",
+    "RL Score": "GOV_WGI_RL.SC",
+    "RL Score Lower Bound": "GOV_WGI_RL.SC_LB",
+    "RL Score Upper Bound": "GOV_WGI_RL.SC_UB",
+    "RL Standard Error": "GOV_WGI_RL.SE",
+    "RL Number of Sources": "GOV_WGI_RL.SR"
 }
 
-# 3. Send the request
-response = requests.get(url, params=params, timeout=30)
+country_code = "IDN"
 
-# 4. Check whether the request succeeded
-response.raise_for_status()
+for name, indicator_code in indicators.items():
 
+    url = (
+        f"https://api.worldbank.org/v2/country/{country_code}/"
+        f"indicator/{indicator_code}"
+    )
 
-# 5. Convert the response into Python data
-data = response.json()
+    params = {
+        "date": "1996:2024",
+        "format": "json",
+        "per_page": 100,
+        "source": 3
+    }
 
-# 6. Check whether the API returned valid observations
-if len(data) < 2 or not isinstance(data[1], list):
-    print("--- API ERROR ---")
-    print(data[0])
-else:
-    print("--- API METADATA ---")
-    print(data[0])
+    response = requests.get(url, params=params, timeout=30)
+    response.raise_for_status()
 
-    print("\n--- FIRST OBSERVATION ---")
-    print(data[1][0])
+    data = response.json()
 
+    print(f"\n--- {name} ---")
+
+    if len(data) < 2 or not isinstance(data[1], list):
+        print("API ERROR:", data[0])
+    else:
+        print("Observations:", data[0]["total"])
+        print("Latest observation:", data[1][0])
