@@ -171,3 +171,56 @@ for sheet in historical_sheets:
 
     for label in labels:
         print(label)
+
+# 11. Compare original 2012-2013 scores with consolidated historical data
+
+# First, inspect Indonesia in the consolidated dataset
+
+print("\n--- INDONESIA: CONSOLIDATED HISTORICAL DATA ---")
+
+indonesia_historical = df[
+    (df["Country"] == "Indonesia") &
+    (df["Year"].astype(str) == "2012-2013")
+]
+
+selected_columns = [
+    "Country",
+    "Year",
+    "WJP Rule of Law Index: Overall Score",
+    "Factor 1: Constraints on Government Powers",
+    "Factor 2: Absence of Corruption",
+    "Factor 3: Open Government ",
+    "Factor 5: Order and Security",
+    "Factor 7: Civil Justice",
+    "Factor 8: Criminal Justice"
+]
+
+print(indonesia_historical[selected_columns].to_string(index=False))
+
+
+# Now, inspect Indonesia in the original 2012-2013 worksheet
+
+print("\n--- INDONESIA: ORIGINAL 2012-2013 WORKSHEET ---")
+
+original_df = pd.read_excel(
+    file_path,
+    sheet_name="WJP ROL Index 2012-2013 Scores",
+    header=None
+)
+
+# Find the row containing country names
+country_row = original_df[
+    original_df.eq("Country").any(axis=1)
+].index[0]
+
+# Find Indonesia's column
+indonesia_column = original_df.iloc[country_row].eq("Indonesia").idxmax()
+
+# Print indicator labels and Indonesia's scores
+for index, label in original_df.iloc[:, 0].items():
+
+    if pd.notna(label):
+
+        score = original_df.iloc[index, indonesia_column]
+
+        print(label, ":", score)
