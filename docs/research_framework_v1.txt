@@ -48,7 +48,21 @@ Level 1, Government and institutional environment
 
     - Institutional quality
         - Rule of law
-            - WGI: Rule of Law
+            - WGI Rule of Law
+                - Contract enforcement
+                - Property rights
+                - Police performance
+                - Courts and the judicial system
+                - Crime and violence
+            - WJP Rule of Law   
+                - Constraints on Government Powers
+                - Absence of Corruption
+                - Open Government
+                - Fundamental Rights
+                - Order and Security
+                - Regulatory Enforcement
+                - Civil Justice
+                - Criminal Justice
         - Regulatory quality
             - WGI: Regulatory Quality
         - Control of corruption
