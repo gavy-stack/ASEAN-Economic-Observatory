@@ -143,7 +143,7 @@ for country in asean_countries:
 
     print(country, ":", missing if missing else "No missing periods")
 
-# 10. Inspect historical worksheet structures
+# 10. Inspect historical indicator names
 
 historical_sheets = [
     "WJP ROL Index 2012-2013 Scores",
@@ -161,7 +161,13 @@ for sheet in historical_sheets:
         header=None
     )
 
-    print("Dimensions:", historical_df.shape)
+    # Extract non-empty labels from the first column
+    labels = (
+        historical_df.iloc[:, 0]
+        .dropna()
+        .astype(str)
+        .str.strip()
+    )
 
-    print("\nFirst 8 rows:")
-    print(historical_df.head(8).to_string(index=False))
+    for label in labels:
+        print(label)
