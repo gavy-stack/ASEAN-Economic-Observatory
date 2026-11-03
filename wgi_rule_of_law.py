@@ -1,6 +1,6 @@
 
-from numpy import rint
 import requests
+import pandas as pd
 
 # WGI dictionaries for country codes
 countries = {
@@ -74,6 +74,14 @@ for country_code, country_name in countries.items():
 
 print("\nData collection completed!")
 print("Total observations collected:", len(all_data))
+
+df = pd.DataFrame(all_data)
+
+print("\n--- DATAFRAME INFORMATION ---")
+print(df.info())
+
+print("\n--- FIRST 10 ROWS ---")
+print(df.head(10))
 
 print("\n--- FIRST 5 OBSERVATIONS ---")
 
