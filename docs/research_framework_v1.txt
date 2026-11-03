@@ -48,10 +48,15 @@ Level 1, Government and institutional environment
 
     - Institutional quality
         - Rule of law
+            - WGI: Rule of Law
         - Regulatory quality
+            - WGI: Regulatory Quality
         - Control of corruption
+            - WGI: Control of Corruption
         - Accountability
+            - WGI: Voice and Accountability
         - Institutional stability
+            - WGI: Political Stability
     - Fiscal capacity and public financial management
         - Revenue mobilisation
         - Budget planning
