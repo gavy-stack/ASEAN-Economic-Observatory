@@ -32,8 +32,6 @@ country_code = "IDN"
 year_sets = {}
 all_data = []   
 
-all_data = []
-
 for country_code, country_name in countries.items():
 
     print(f"\nCollecting data for {country_name}...")
@@ -77,18 +75,33 @@ print("Total observations collected:", len(all_data))
 
 df = pd.DataFrame(all_data)
 
-print("\n--- DATAFRAME INFORMATION ---")
-print(df.info())
+# Combine indicators belonging to the same country and year
+df_final = (
+    df.groupby(["Country", "Country Code", "Year"])
+    .first()
+    .reset_index()
+)
+
+# Sort chronologically
+df_final = df_final.sort_values(
+    by=["Country Code", "Year"]
+)
+
+print("\n--- FINAL DATAFRAME ---")
+print(df_final.info())
 
 print("\n--- FIRST 10 ROWS ---")
-print(df.head(10))
+print(df_final.head(10))
 
-print("\n--- FIRST 5 OBSERVATIONS ---")
+print("\n--- MISSING VALUES BY INDICATOR ---")
 
-for observation in all_data[:5]:
-    print(observation)
+print(df_final.isnull().sum())
 
-print("\n--- LAST 5 OBSERVATIONS ---")
 
-for observation in all_data[-5:]:
-    print(observation)
+print("\n--- COUNTRY-YEAR RECORDS WITH MISSING DATA ---")
+
+missing_rows = df_final[
+    df_final.isnull().any(axis=1)
+]
+
+print(missing_rows.to_string(index=False))
