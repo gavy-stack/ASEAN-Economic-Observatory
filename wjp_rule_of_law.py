@@ -200,3 +200,24 @@ print(
         asean_rule_of_law_df[indicator_columns].isna().any(axis=1)
     ][["Country", "Year", "Country Code"] + indicator_columns]
 )
+
+# 14. Sort the dataset
+
+asean_rule_of_law_df = asean_rule_of_law_df.sort_values(
+    by=["Country Code", "Year"]
+).reset_index(drop=True)
+
+
+# 15. Export the cleaned dataset
+
+output_path = "data/processed/asean_wjp_rule_of_law_2012_2024.csv"
+
+asean_rule_of_law_df.to_csv(
+    output_path,
+    index=False
+)
+
+print("\n--- EXPORT SUCCESSFUL ---")
+print("File saved to:", output_path)
+print("Rows exported:", len(asean_rule_of_law_df))
+print("Columns exported:", len(asean_rule_of_law_df.columns))
