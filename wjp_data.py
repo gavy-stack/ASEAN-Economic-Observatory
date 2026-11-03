@@ -108,3 +108,37 @@ duplicates = df.duplicated(
 ).sum()
 
 print("Duplicate observations:", duplicates)
+
+# 9. Identify missing observation periods
+
+print("\n--- MISSING PERIODS BY ASEAN COUNTRY ---")
+
+expected_periods = [
+    "2012-2013",
+    "2014",
+    "2015",
+    "2016",
+    "2017-2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024",
+    "2025",
+    "2026"
+]
+
+for country in asean_countries:
+
+    available = asean_df.loc[
+        asean_df["Country"] == country,
+        "Year_label"
+    ].tolist()
+
+    missing = [
+        period for period in expected_periods
+        if period not in available
+    ]
+
+    print(country, ":", missing if missing else "No missing periods")
