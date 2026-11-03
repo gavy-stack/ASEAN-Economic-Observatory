@@ -4,7 +4,7 @@ import requests
 # 1. Define the API address
 url = (
     "https://api.worldbank.org/v2/country/IDN/"
-    "indicator/GOV_WGI_RL_EST"
+    "indicator/GOV_WGI_RL_SC"
 )
 
 # 2. Define the request parameters
