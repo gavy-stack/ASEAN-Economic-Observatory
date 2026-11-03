@@ -105,3 +105,45 @@ missing_rows = df_final[
 ]
 
 print(missing_rows.to_string(index=False))
+
+print("\n--- FINAL DATA QUALITY VALIDATION ---")
+
+# 1. Check duplicate country-year records
+duplicates = df_final.duplicated(
+    subset=["Country Code", "Year"]
+).sum()
+
+print("Duplicate country-year records:", duplicates)
+
+
+# 2. Check country coverage
+print("\nNumber of countries:", df_final["Country Code"].nunique())
+
+print("\nRecords by country:")
+print(
+    df_final.groupby("Country")["Year"].count()
+)
+
+
+# 3. Check reporting periods by country
+print("\nReporting periods by country:")
+print(
+    df_final.groupby("Country")["Year"].nunique()
+)
+
+
+# 4. Validate confidence intervals
+valid_intervals = df_final.dropna(
+    subset=[
+        "RL Score",
+        "RL Score Lower Bound",
+        "RL Score Upper Bound"
+    ]
+)
+
+invalid_intervals = valid_intervals[
+    (valid_intervals["RL Score Lower Bound"] > valid_intervals["RL Score"]) |
+    (valid_intervals["RL Score"] > valid_intervals["RL Score Upper Bound"])
+]
+
+print("\nInvalid confidence intervals:", len(invalid_intervals))
