@@ -143,7 +143,7 @@ for country in asean_countries:
 
     print(country, ":", missing if missing else "No missing periods")
 
-    # 10. Inspect historical worksheet structures
+# 10. Inspect historical worksheet structures
 
 historical_sheets = [
     "WJP ROL Index 2012-2013 Scores",
