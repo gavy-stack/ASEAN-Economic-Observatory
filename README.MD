@@ -1,11 +1,14 @@
 ASEAN Economic Observatory 
-    Understanding Indonesia's governance and its position in ASEAN
+
+Understanding Indonesia's governance and its position in ASEAN
 
 About
-    This project is an independent research about analyzing how Indonesia's government manage its country through the lens of institutional quality, public investment, and financial development and relates it across ASEAN.
+
+This project is an independent research about analyzing how Indonesia's government manage its country through the lens of institutional quality, public investment, and financial development and relates it across ASEAN.
 
 The question
-    What makes a government capable of turning its resources and policies into actual results? Because having a budget is one thing. Knowing how to spend it properly is another thing bro 🔥.
+
+What makes a government capable of turning its resources and policies into actual results? Because having a budget is one thing. Knowing how to spend it properly is another thing bro 🔥.
 
 Research Framework
     Level 1 - Government and Institutional Environment
