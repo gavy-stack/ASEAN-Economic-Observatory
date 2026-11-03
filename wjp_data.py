@@ -276,3 +276,183 @@ print(
     .count()
     .to_string()
 )
+
+# 14. Validate consolidated scores against original 2012-2013 scores
+
+import re
+
+# Read the original 2012-2013 worksheet
+original_df = pd.read_excel(
+    file_path,
+    sheet_name="WJP ROL Index 2012-2013 Scores",
+    header=None
+)
+
+# Define the mapping:
+# Original worksheet label -> Consolidated dataset column
+
+indicator_mapping = {
+
+    # Civil Justice
+    "Factor 7: Civil Justice":
+        "Factor 7: Civil Justice",
+
+    "7.1 People can access and afford civil justice":
+        "7.1 People can access and afford civil justice",
+
+    "7.2 Civil justice is free of discrimination":
+        "7.2 Civil justice is free of discrimination",
+
+    "7.3 Civil justice is free of corruption":
+        "7.3 Civil justice is free of corruption",
+
+    "7.4 Civil justice is free of improper government influence":
+        "7.4 Civil justice is free of improper government influence",
+
+    "7.5 Civil justice is not subject to unreasonable delays":
+        "7.5 Civil justice is not subject to unreasonable delay",
+
+    "7.6 Civil justice is effectively enforced":
+        "7.6. Civil justice is effectively enforced",
+
+    "7.7 ADRs are accessible, impartial, and effective":
+        "7.7 Alternative dispute resolution mechanisms are accessible, impartial, and effective",
+
+    # Criminal Justice
+    "Factor 8: Criminal Justice":
+        "Factor 8: Criminal Justice",
+
+    "8.1 Criminal investigation system is effective":
+        "8.1 Criminal investigation system is effective",
+
+    "8.2 Criminal adjudication system is timely and effective":
+        "8.2 Criminal adjudication system is timely and effective",
+
+    "8.3 Correctional system is effective in reducing criminal behavior":
+        "8.3 Correctional system is effective in reducing criminal behavior",
+
+    "8.4 Criminal system is impartial":
+        "8.4 Criminal system is impartial",
+
+    "8.5 Criminal system is free of corruption":
+        "8.5 Criminal system is free of corruption",
+
+    "8.6 Criminal system is free of improper government influence":
+        "8.6 Criminal system is free of improper government influence",
+
+    "8.7 Due process of law and rights of the accused":
+        "8.7. Due process of the law and rights of the accused",
+
+    # Supplementary indicators
+    "1.3 Government powers are effectively limited by the judiciary":
+        "1.2 Government powers are effectively limited by the judiciary",
+
+    "3.1 Crime is effectively controlled":
+        "5.1 Crime is effectively controlled",
+
+    "3.2 Civil conflict is effectively limited":
+        "5.2 Civil conflict is effectively limited"
+}
+
+
+# Find the row containing country names
+country_row = original_df[
+    original_df.eq("Country").any(axis=1)
+].index[0]
+
+# Find the row containing indicator labels
+original_labels = original_df.iloc[:, 0].astype(str).str.strip()
+
+# Find the columns containing each country's scores
+country_columns = {
+    str(value).strip(): index
+    for index, value in original_df.iloc[country_row].items()
+    if isinstance(value, str)
+}
+
+
+# Get ASEAN countries with 2012-2013 observations
+countries_2012 = df.loc[
+    df["Year"].astype(str) == "2012-2013",
+    "Country"
+].tolist()
+
+
+# Prepare comparison results
+results = []
+
+for original_label, consolidated_column in indicator_mapping.items():
+
+    # Find the original worksheet row
+    matching_rows = original_labels[
+        original_labels == original_label
+    ].index
+
+    if len(matching_rows) == 0:
+        print("WARNING: Original label not found:", original_label)
+        continue
+
+    original_row = matching_rows[0]
+
+    for country in countries_2012:
+
+        # Find the country's original score
+        country_column = country_columns[country]
+
+        original_score = original_df.iloc[
+            original_row, country_column
+        ]
+
+        # Find the country's consolidated score
+        consolidated_score = df.loc[
+            (df["Country"] == country) &
+            (df["Year"].astype(str) == "2012-2013"),
+            consolidated_column
+        ].iloc[0]
+
+        # Compare the two scores
+        difference = abs(
+            float(original_score) - float(consolidated_score)
+        )
+
+        match = difference <= 0.000000001
+
+        results.append({
+            "Country": country,
+            "Indicator": consolidated_column,
+            "Original Score": original_score,
+            "Consolidated Score": consolidated_score,
+            "Difference": difference,
+            "Match": match
+        })
+
+
+# Convert results into a DataFrame
+comparison_df = pd.DataFrame(results)
+
+# Display validation summary
+print("\n--- HISTORICAL DATA VALIDATION ---")
+
+print("Total comparisons:", len(comparison_df))
+print("Matching scores:", comparison_df["Match"].sum())
+print("Mismatching scores:", (~comparison_df["Match"]).sum())
+
+# Display mismatches, if any
+print("\n--- MISMATCHED SCORES ---")
+
+mismatches = comparison_df[
+    comparison_df["Match"] == False
+]
+
+if mismatches.empty:
+    print("No mismatches found. All compared scores match.")
+else:
+    print(mismatches.to_string(index=False))
+
+# Export detailed comparison
+comparison_df.to_csv(
+    "data/processed/wjp_2012_2013_validation.csv",
+    index=False
+)
+
+print("\nValidation results exported successfully.")
