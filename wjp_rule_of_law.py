@@ -151,3 +151,52 @@ print(
     .count()
     .sort_index()
 )
+
+# 13. Check missing values in selected indicators
+
+metadata_columns = [
+    "Country",
+    "Year",
+    "Country Code",
+    "Region"
+]
+
+indicator_columns = [
+    column
+    for column in asean_rule_of_law_df.columns
+    if column not in metadata_columns
+]
+
+# Count missing values for each indicator
+missing_summary = (
+    asean_rule_of_law_df[indicator_columns]
+    .isna()
+    .sum()
+    .sort_values(ascending=False)
+)
+
+print("\n--- MISSING VALUES BY INDICATOR ---")
+print(missing_summary)
+
+print("\n--- TOTAL MISSING VALUES ---")
+print("Missing cells:", missing_summary.sum())
+
+print("\n--- AVAILABLE SCORES ---")
+print(
+    "Total possible scores:",
+    len(asean_rule_of_law_df) * len(indicator_columns)
+)
+
+print(
+    "Available scores:",
+    asean_rule_of_law_df[indicator_columns].notna().sum().sum()
+)
+
+# Display observations with at least one missing indicator
+print("\n--- OBSERVATIONS WITH MISSING SCORES ---")
+
+print(
+    asean_rule_of_law_df[
+        asean_rule_of_law_df[indicator_columns].isna().any(axis=1)
+    ][["Country", "Year", "Country Code"] + indicator_columns]
+)
