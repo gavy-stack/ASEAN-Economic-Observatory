@@ -1,9 +1,9 @@
 # WGI Rule of Law Dataset Documentation
 
 **Project:** ASEAN Economic Observatory  
-**Framework classification:** Level 1A — Institutional Quality  
-**Subdimension:** 1A.1 — Rule of Law  
-**Data source:** World Bank — Worldwide Governance Indicators (WGI)  
+**Framework classification:** Level 1A, Institutional Quality  
+**Subdimension:** 1A.1 Rule of Law  
+**Data source:** World Bank, Worldwide Governance Indicators (WGI)  
 **World Bank API Source ID:** 3 (revised WGI series)  
 **Research period:** 1996–2024  
 **Geographical coverage:** 11 ASEAN member countries  
@@ -13,40 +13,36 @@
 
 ## 1. Purpose
 
-This dataset measures the Rule of Law dimension of institutional quality across ASEAN countries.
+The purpose of the extraction of this dataset is to measure the Rule of Law dimension in Indonesia and comparing it into ASEAN, contemplating the extistential reason for Indonesia haha jk.
 
-It provides a broad comparative measure of institutional performance, particularly regarding confidence in and adherence to the rules of society, contract enforcement, property rights, policing, judicial institutions, crime, and violence.
+The Rule of Law of WGI comprises of institutional performance, particularly regarding confidence in and adherence to the rules of society, contract enforcement, property rights, policing, judicial institutions, crime, and violence.
 
-Within the ASEAN Economic Observatory framework, WGI Rule of Law serves as a core indicator of institutional quality under Level 1A.1.
-
-The dataset is intended to support historical comparisons across ASEAN countries and subsequent analysis of the relationship between institutional quality, government capacity, public investment, financial development, and economic and social outcomes.
+This dataset serves as a core indicator of institutional quality under Level 1A.1. Rule of Law
 
 ## 2. Data Source
 
 The dataset was obtained from the World Bank's Worldwide Governance Indicators (WGI) through the World Bank API.
 
-**Selected API source:** Source ID 3 — Worldwide Governance Indicators (revised series).
+**Selected API source:** Source ID 3, Worldwide Governance Indicators (revised series).
 
-The revised series was selected to maintain consistency with the updated WGI methodology and its recalculated historical estimates.
+There was a previous version dataset of the Rule of Law by the name of Source ID 2. We decided to use the Source ID 3
 
-Earlier observations retrieved using Source ID 2 were excluded from the final dataset.
-
-**API endpoint structure:**
+**Below is the API endpoint structure:**
 
 `https://api.worldbank.org/v2/country/{country_code}/indicator/{indicator_code}`
 
-API parameters:
+API parameters used:
 
 - `date=1996:2024`
 - `format=json`
 - `per_page=100`
 - `source=3`
 
-The revised WGI metadata retrieved during collection reported a last update of 25 September 2026.
+WGI last updated this dataset at 25 September 2026.
 
 ## 3. Conceptual Definition
 
-WGI defines Rule of Law as perceptions of the extent to which agents have confidence in and abide by the rules of society.
+WGI stated that the definition of the Rule of Law is the perception of the extent to which agents have confidence in and abide by the rules of society.
 
 It particularly concerns:
 
@@ -56,24 +52,26 @@ It particularly concerns:
 - The courts.
 - The likelihood of crime and violence.
 
-The indicator is a broad perception-based measure of institutional quality and performance.
-
 It does not directly measure government resources, the number of judges or police officers, judicial budgets, or administrative staffing.
 
-Consequently, it should be interpreted as an indicator of institutional performance rather than a direct measurement of institutional capacity.
+Consequently, it should be interpreted as an indicator of institutional performance rather than a direct measurement of institutional capacity. True that.
 
 ## 4. Selected Indicators
 
 Six measurements were collected for each available country-year observation.
 
-| Variable | World Bank API code | Description |
-|---|---|---|
-| RL Estimate | `GOV_WGI_RL.EST` | Governance estimate, approximately -2.5 to +2.5 |
-| RL Score | `GOV_WGI_RL.SC` | Absolute governance score, 0–100 |
-| RL Score Lower Bound | `GOV_WGI_RL.SC_LB` | Lower bound of the 90% confidence interval for the governance score |
-| RL Score Upper Bound | `GOV_WGI_RL.SC_UB` | Upper bound of the 90% confidence interval for the governance score |
-| RL Standard Error | `GOV_WGI_RL.SE` | Standard error of the governance estimate |
-| RL Number of Sources | `GOV_WGI_RL.SR` | Number of underlying information sources |
+- RL Estimate, GOV_WGI_RL.EST, The estimated level of Rule of Law, expressed in standard normal units ranging approximately from -2.5 to +2.5. Higher values indicate stronger Rule of Law.
+
+- RL Score, GOV_WGI_RL.SC, The absolute Rule of Law governance score, expressed on a 0–100 scale. Higher values indicate stronger Rule of Law.
+
+- RL Score Lower Bound, GOV_WGI_RL.SC_LB, The lower bound of the 90% confidence interval for the Rule of Law governance score.
+
+- RL Score Upper Bound, GOV_WGI_RL.SC_UB, The upper bound of the 90% confidence interval for the Rule of Law governance score.
+
+- RL Standard Error, GOV_WGI_RL.SE, The standard error of the Rule of Law governance estimate. It indicates the precision of the estimate; a larger value means greater uncertainty.
+
+- RL Number of Sources, GOV_WGI_RL.SR, The number of underlying data sources used to estimate the Rule of Law indicator for a country and year.
+
 
 ### Interpretation
 
@@ -95,29 +93,33 @@ Note: The absolute governance score and percentile rank are different measuremen
 
 The dataset covers all 11 current ASEAN member countries:
 
-| Country | ISO-3 code |
-|---|---|
-| Brunei Darussalam | BRN |
-| Cambodia | KHM |
-| Indonesia | IDN |
-| Lao PDR | LAO |
-| Malaysia | MYS |
-| Myanmar | MMR |
-| Philippines | PHL |
-| Singapore | SGP |
-| Thailand | THA |
-| Timor-Leste | TLS |
-| Vietnam | VNM |
+Brunei Darussalam, `BRN`
+
+Cambodia, `KHM`
+
+Indonesia, `IDN`
+
+Lao PDR, `LAO`
+
+Malaysia, `MYS`
+
+Myanmar, `MMR`
+
+Philippines, `PHL`
+
+Singapore, `SGP`
+
+Thailand, `THA`
+
+Timor-Leste, `TLS`
+
+Vietnam, `VNM`
 
 The research period is 1996–2024.
 
-WGI observations are not annual throughout the entire period. The available reporting years are:
-
-1996, 1998, 2000, and annually from 2002 through 2024.
+WGI observations are not annual throughout the entire period. The available reporting years are: 1996, 1998, 2000, and annually from 2002 through 2024.
 
 This produces 26 reporting periods per country.
-
-No interpolation was performed for years without WGI observations.
 
 ## 6. Data Collection and Processing
 
@@ -152,26 +154,22 @@ The final dataset contains the following columns:
 
 The final dataset contains:
 
-| Measurement | Result |
-|---|---:|
-| ASEAN countries | 11 |
-| Reporting periods per country | 26 |
-| Total country-year records | 286 |
-| Total indicator observations available | 1,704 |
-| Missing indicator observations | 12 |
-| Duplicate country-year records | 0 |
-| Invalid confidence intervals | 0 |
+- Countries: 11 ASEAN member states.
+- Period: 1996–2024.
+- Reporting periods: 26 per country (1996, 1998, 2000, and annually from 2002 to 2024).
+- Total country-year records: 286.
+- Expected indicator values: 1,716 (286 × 6).
+- Available indicator values: 1,704.
+- Missing indicator values: 12.
+- Data coverage: approximately 99.3%.
+- Duplicate country-year records: 0.
+- Invalid confidence intervals: 0.
 
 ### Missing Observations
 
 Two country-year observations are missing for all six indicators:
-
-| Country | Year | Missing measurements |
-|---|---:|---:|
-| Timor-Leste | 1996 | All six indicators |
-| Timor-Leste | 1998 | All six indicators |
-
-These observations were retained as missing values rather than replaced with zero or interpolated estimates.
+- Timor-Leste, TLS, 1996, All six WGI Rule of Law indicators are missing.
+- Timor-Leste, TLS, 1998, All six WGI Rule of Law indicators are missing.
 
 The reason for their absence was not established during the API collection process.
 

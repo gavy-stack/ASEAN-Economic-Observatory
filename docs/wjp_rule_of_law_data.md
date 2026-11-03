@@ -26,7 +26,7 @@ The WJP indicators primarily capture institutional performance and the experienc
 
 ## 2. Data Source
 
-**Source:** World Justice Project (WJP), Rule of Law Index — Historical Data.
+**Source:** World Justice Project (WJP), Rule of Law Index, Historical Data.
 
 **Original file:** `wjp_historical.xlsx`  
 **Source worksheet:** `Historical Data`  
