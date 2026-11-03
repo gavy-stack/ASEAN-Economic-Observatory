@@ -26,7 +26,7 @@ if response.status_code == 200:
             "Country Code": observation["countryiso3code"],
             "Year": int(observation["date"]),
             "GDP Growth": observation["value"]
-}
+        }
         records.append(record)
 
     # 6. Convert records into a DataFrame
