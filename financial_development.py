@@ -124,6 +124,37 @@ if response.status_code == 200:
         if missing_years:
             print(f"{country}: {missing_years}")
 
+    # 19. Create a country data coverage report
+
+    coverage = df.groupby("Country")["Domestic Credit (% of GDP)"].agg(
+        Total_Years="size",
+        Available_Years="count",
+        Missing_Years=lambda values: values.isna().sum()
+    )
+
+    # Calculate percentage of available observations
+    coverage["Coverage (%)"] = (
+        coverage["Available_Years"] / coverage["Total_Years"] * 100
+    ).round(1)
+
+    # Find the first and last available observation for each country
+    available_years = (
+        df.dropna(subset=["Domestic Credit (% of GDP)"])
+        .groupby("Country")["Year"]
+        .agg(["min", "max"])
+    )
+
+    # Combine the two reports
+    coverage = coverage.join(available_years)
+
+    coverage = coverage.rename(columns={
+        "min": "First Available Year",
+        "max": "Last Available Year"
+    })
+
+    print("\n--- ASEAN FINANCIAL DATA COVERAGE ---")
+    print(coverage.to_string())
+
 else:
     print("Something went wrong!")
     print("Status code:", response.status_code)
