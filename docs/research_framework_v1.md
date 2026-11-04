@@ -54,7 +54,7 @@ The reason for the choosing of 1996-2024 is due to several reasons:
 Level 1, Government and institutional environment
 
     - Institutional quality
-        - Rule of law
+        - Rule of law (✅)
             - WGI Rule of Law
                 - Contract enforcement
                 - Property rights
