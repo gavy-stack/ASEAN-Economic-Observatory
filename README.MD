@@ -15,7 +15,7 @@ Research Framework
 
 - Level 1A - Institutional Quality
 
-- Level 1A.1 - Rule of Law
+- Level 1A.1 - Rule of Law (✅)
 - Level 1A.2 - Regulatory Quality
 - Level 1A.3 - Control of Corruption
 - Level 1A.4 - Accountability
