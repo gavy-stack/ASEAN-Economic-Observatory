@@ -2,43 +2,45 @@ ASEAN ECONOMIC Observatory
     
 What is the Central research objective?
 
-To examine how government and institutional capacity, public investment, and financial development relate to economic and social development across ASEAN countries, with particular attention to how government capacity influences the management and effectiveness of public investment and financial systems.
+    To examine how government and institutional capacity, public investment, and financial development relate to economic and social development across ASEAN countries, with particular attention to how government capacity influences the management and effectiveness of public investment and financial systems.
 
 
 
 Primary Research Question
     
-How do government and institutional capacity, public investment, and financial development relate to economic and social development across ASEAN countries, with particular attention to how government capacity shapes the effectiveness of public investment and financial systems?
+    How do government and institutional capacity, public investment, and financial development relate to economic and social development across ASEAN countries, with particular attention to how government capacity shapes the effectiveness of public investment and financial systems?
 
 Geographical scope
 
-All 11 current ASEAN member states, with Indonesia as the primary focus and the other countries serving as comparative references.
+    All 11 current ASEAN member states, with Indonesia as the primary focus and the other countries serving as comparative references.
 
 Research Data Process
 
-Layer 1 (Raw Data)
+    Layer 1 (Raw Data)
         ^
         |
         |
-Layer 2 (Processed Data)
+    Layer 2 (Processed Data)
         ^
         |
         |
-Layer 3 (Analysis and Visualization)
+    Layer 3 (Analysis and Visualization)
 
 First research theme:
+
     - Government effectiveness and public expenditure.
     - Banking and financial systems as drivers of economic development
 
 Historical scope
     
-1996–2024 initially, using annual observations, subject to indicator-specific data availability.
+    1996–2024 initially, using annual observations, subject to indicator-specific data availability.
 
 Long-term Ambition
    
-Develop an integrated understanding of how governments, institutions, and financial systems contribute to national development.
+    Develop an integrated understanding of how governments, institutions, and financial systems contribute to national development.
 
 The reason for the choosing of 1996-2024 is due to several reasons:
+    
     1. Consistency with future governance analysis
         - We're planning to expand the Observatory beyond banking and financial development to investigate how government effectiveness and institutional quality relate to economic development.
     2. To capture important historical events
@@ -102,11 +104,13 @@ Level 2A, Public Investment
     - Public capital formation
     
 Level 2B, Financial development
+
     - Banking
     - Private credit (✅)
     - Financial access
 
 Level 3, Economic and social outcomes
+
     - Economic growth (✅)
     - Income
     - Employment
@@ -115,6 +119,7 @@ Level 3, Economic and social outcomes
 
 
 Hypothesis
+
     Governance and outcomes
     - The Question: Does institutional quality relate to development outcomes?
         - H1, Better institutional quality is associated with stronger economic and social outcomes.
