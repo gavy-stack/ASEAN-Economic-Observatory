@@ -1,37 +1,42 @@
 ASEAN ECONOMIC Observatory
-    Governance-centered comparative research on national development across ASEAN.
+    
+What is the Central research objective?
 
-Central research objective
-    To examine how government and institutional capacity, public investment, and financial development relate to economic and social development across ASEAN countries, with particular attention to how government capacity influences the management and effectiveness of public investment and financial systems.
+To examine how government and institutional capacity, public investment, and financial development relate to economic and social development across ASEAN countries, with particular attention to how government capacity influences the management and effectiveness of public investment and financial systems.
 
 
 
 Primary Research Question
-    How do government and institutional capacity, public investment, and financial development relate to economic and social development across ASEAN countries, with particular attention to how government capacity shapes the effectiveness of public investment and financial systems?
+    
+How do government and institutional capacity, public investment, and financial development relate to economic and social development across ASEAN countries, with particular attention to how government capacity shapes the effectiveness of public investment and financial systems?
 
 Geographical scope
-    All 11 current ASEAN member states, with Indonesia as the primary focus and the other countries serving as comparative references.
+
+All 11 current ASEAN member states, with Indonesia as the primary focus and the other countries serving as comparative references.
 
 Research Data Process
-    Layer 1 (Raw Data)
+
+Layer 1 (Raw Data)
         ^
         |
         |
-    Layer 2 (Processed Data)
+Layer 2 (Processed Data)
         ^
         |
         |
-    Layer 3 (Analysis and Visualization)
+Layer 3 (Analysis and Visualization)
 
 First research theme:
     - Government effectiveness and public expenditure.
     - Banking and financial systems as drivers of economic development
 
 Historical scope
-    1996–2024 initially, using annual observations, subject to indicator-specific data availability.
+    
+1996–2024 initially, using annual observations, subject to indicator-specific data availability.
 
 Long-term Ambition
-    Develop an integrated understanding of how governments, institutions, and financial systems contribute to national development.
+   
+Develop an integrated understanding of how governments, institutions, and financial systems contribute to national development.
 
 The reason for the choosing of 1996-2024 is due to several reasons:
     1. Consistency with future governance analysis
