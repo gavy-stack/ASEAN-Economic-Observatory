@@ -1,5 +1,8 @@
 import requests
+import pandas as pd
+from pathlib import Path
 
+# ASEAN countries
 countries = {
     "Brunei Darussalam": "BRN",
     "Cambodia": "KHM",
@@ -14,6 +17,7 @@ countries = {
     "Vietnam": "VNM"
 }
 
+# WGI Regulatory Quality indicators
 indicators = {
     "RQ Estimate": "GOV_WGI_RQ.EST",
     "RQ Score": "GOV_WGI_RQ.SC",
@@ -23,9 +27,12 @@ indicators = {
     "RQ Number of Sources": "GOV_WGI_RQ.SR"
 }
 
+all_data = []
+
+# Collect API observations
 for country_name, country_code in countries.items():
 
-    print(f"\n========== {country_name} ({country_code}) ==========")
+    print(f"\nCollecting {country_name}...")
 
     for indicator_name, indicator_code in indicators.items():
 
@@ -42,39 +49,40 @@ for country_name, country_code in countries.items():
         }
 
         response = requests.get(url, params=params, timeout=30)
-
-        if response.status_code != 200:
-            print(indicator_name, "- HTTP ERROR:", response.status_code)
-            continue
+        response.raise_for_status()
 
         data = response.json()
 
         if not isinstance(data, list) or len(data) < 2:
-            print(indicator_name, "- INVALID API RESPONSE")
-            continue
+            raise ValueError(
+                f"Invalid API response: {country_code}, {indicator_code}"
+            )
 
         observations = data[1]
 
-        returned_countries = {
-            item["countryiso3code"] for item in observations
-        }
+        for item in observations:
 
-        returned_indicators = {
-            item["indicator"]["id"] for item in observations
-        }
+            all_data.append({
+                "Country": country_name,
+                "Country Code": country_code,
+                "Year": int(item["date"]),
+                "Indicator": indicator_name,
+                "Indicator Code": indicator_code,
+                "Value": item["value"]
+            })
 
-        years = sorted({
-            int(item["date"]) for item in observations
-        })
+        print(f"  {indicator_name}: {len(observations)} observations")
 
-        country_check = returned_countries == {country_code}
-        indicator_check = returned_indicators == {indicator_code}
+# Create DataFrame
+df = pd.DataFrame(all_data)
 
-        print(
-            f"{indicator_name}: "
-            f"HTTP {response.status_code} | "
-            f"Observations: {len(observations)} | "
-            f"Country: {'PASS' if country_check else 'FAIL'} | "
-            f"Indicator: {'PASS' if indicator_check else 'FAIL'} | "
-            f"Years: {years}"
-        )
+# Save raw observations
+output_path = Path("data/raw/wgi_regulatory_quality.csv")
+
+df.to_csv(output_path, index=False)
+
+print("\n========== COLLECTION SUMMARY ==========")
+print("Total observations:", len(df))
+print("Countries:", df["Country Code"].nunique())
+print("Indicators:", df["Indicator Code"].nunique())
+print("Saved to:", output_path)
