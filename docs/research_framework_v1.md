@@ -70,8 +70,8 @@ Level 1, Government and institutional environment
                 - Regulatory Enforcement
                 - Civil Justice
                 - Criminal Justice
-        - Regulatory quality
-            - WGI: Regulatory Quality
+        - Regulatory quality ✅
+            - WGI: Regulatory Quality ✅
         - Control of corruption
             - WGI: Control of Corruption
         - Accountability
