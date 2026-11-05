@@ -61,7 +61,7 @@ Level 1, Government and institutional environment
                 - Police performance
                 - Courts and the judicial system
                 - Crime and violence
-            - WJP Rule of Law   
+            - WJP Rule of Law ✅
                 - Constraints on Government Powers
                 - Absence of Corruption
                 - Open Government
