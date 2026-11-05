@@ -17,10 +17,12 @@ Here are our current worfklows:
     Confirm country codes, indicator IDs, years, and API responses.
 3. Save raw data ✅
     Preserve the original downloaded observations.
-4. Process the data
+4. Process the data ✅
     Combine the six measurements into one dataset with one row per country-year.
-5. Validate the final dataset
+5. Validate the final dataset ✅
     Check missing values, duplicate records, country coverage, and confidence intervals.
-6. Export the dataset
+6. Export the dataset ✅
     Save the final CSV in data/processed/.
+7. Last Validation for the proccessed dataset
+    Confidence intervals, score consistency, standard errors, source counts
 
